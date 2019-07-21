@@ -44,23 +44,23 @@ RSpec.describe Hangman::UserInterface::Default do
   end
 
   context "#draw_guess" do
+    it "prints the current guess if the guess was correct" do
+      text = "Good guess!\nYou have 2 lives left.\n\n"
+      expect {
+        ui.draw_guess(
+          failed: false,
+          lives_count: 2,
+          incorrect_letters: []
+        )
+      }.to output(text).to_stdout
+    end
+
     it "prints the current guess if the guess was incorrect" do
       text = "Bad luck!\nYou have 1 life left.\nIncorrect letters: t, q.\n\n"
       expect {
         ui.draw_guess(
           failed: true,
           lives_count: 1,
-          incorrect_letters: ["t", "q"]
-        )
-      }.to output(text).to_stdout
-    end
-
-    it "prints the current guess if the guess was correct" do
-      text = "Good guess!\nYou have 2 lives left.\nIncorrect letters: t, q.\n\n"
-      expect {
-        ui.draw_guess(
-          failed: false,
-          lives_count: 2,
           incorrect_letters: ["t", "q"]
         )
       }.to output(text).to_stdout
