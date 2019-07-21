@@ -1,3 +1,4 @@
 require_relative "hangman/version"
-require_relative "hangman/user_interface/default"
-require_relative "hangman/game_engine"
+require_relative "hangman/game"
+require_relative "hangman/engine"
+require_relative "hangman/interface/default"

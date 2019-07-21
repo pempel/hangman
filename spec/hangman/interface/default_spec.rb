@@ -1,4 +1,4 @@
-RSpec.describe Hangman::UserInterface::Default do
+RSpec.describe Hangman::Interface::Default do
   let(:ui) { described_class.new(word_definition: "Definition") }
 
   before(:each) do
@@ -30,7 +30,7 @@ RSpec.describe Hangman::UserInterface::Default do
 
   context "#draw_task" do
     it "prints the task" do
-      text = "You need to guess the word:\nDefinition\n"
+      text = "You need to guess the word by its definition:\nDefinition\n"
       expect { ui.draw_task }.to output(text).to_stdout
     end
   end
@@ -38,28 +38,28 @@ RSpec.describe Hangman::UserInterface::Default do
   context "#draw_word" do
     it "prints the word with dashes" do
       letters = ["", "l", "", "x"]
-      text = "\n_ l _ x\n\n"
+      text = "_ l _ x\n\n"
       expect { ui.draw_word(letters: letters) }.to output(text).to_stdout
     end
   end
 
   context "#draw_guess" do
-    it "prints the current guess if the guess was correct" do
+    it "prints the current guess if the guess is correct" do
       text = "Good guess!\nYou have 2 lives left.\n\n"
       expect {
         ui.draw_guess(
-          failed: false,
+          success: true,
           lives_count: 2,
           incorrect_letters: []
         )
       }.to output(text).to_stdout
     end
 
-    it "prints the current guess if the guess was incorrect" do
+    it "prints the current guess if the guess is incorrect" do
       text = "Bad luck!\nYou have 1 life left.\nIncorrect letters: t, q.\n\n"
       expect {
         ui.draw_guess(
-          failed: true,
+          success: false,
           lives_count: 1,
           incorrect_letters: ["t", "q"]
         )
@@ -71,18 +71,18 @@ RSpec.describe Hangman::UserInterface::Default do
     it "prints the gallow for the specified step" do
       text = begin
         "\n"\
-        "     ------   \n"\
-        "    |/     |  \n"\
-        "    |      0  \n"\
-        "    |         \n"\
-        "    |         \n"\
-        "    |         \n"\
-        "    |         \n"\
-        "    |         \n"\
-        "_ _ | _ _     \n"\
+        "     ------    \n"\
+        "    |/     |   \n"\
+        "    |      0   \n"\
+        "    |     /|\\ \n"\
+        "    |      |   \n"\
+        "    |     / \\ \n"\
+        "    |          \n"\
+        "    |          \n"\
+        "_ _ | _ _      \n"\
         "\n"
       end
-      expect { ui.draw_gallow(step: 2) }.to output(text).to_stdout
+      expect { ui.draw_gallow(step: 8) }.to output(text).to_stdout
     end
   end
 end

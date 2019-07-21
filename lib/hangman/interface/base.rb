@@ -1,5 +1,5 @@
 module Hangman
-  module UserInterface
+  module Interface
     class Base
       def handle_game_won
         raise "Abstract method called"
@@ -25,7 +25,7 @@ module Hangman
         raise "Abstract method called"
       end
 
-      def draw_guess(failed:, lives_count:, incorrect_letters:)
+      def draw_guess(success:, lives_count:, incorrect_letters:)
         raise "Abstract method called"
       end
 

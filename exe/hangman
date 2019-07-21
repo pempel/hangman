@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "optparse"
+require "hangman"
+
+word = "Flux"
+word_definition = begin
+  "A software platform that makes it easier for you "\
+  "to run your energy retail business end-to-end "\
+  "while unlocking opportunities to innovate."
+end
+
+OptionParser.new do |parser|
+  description = "The word you want to guess"
+  parser.on("-w", "--word WORD", description) do |value|
+    word = value
+  end
+
+  description = "The definition of the word you want to guess"
+  parser.on("-d", "--definition DEFINITION", description) do |value|
+    word_definition = value
+  end
+end.parse!
+
+engine = Hangman::Engine.new(word: word)
+interface = Hangman::Interface::Default.new(word_definition: word_definition)
+game = Hangman::Game.new(engine: engine, interface: interface)
+game.play

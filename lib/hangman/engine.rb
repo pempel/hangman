@@ -1,5 +1,5 @@
 module Hangman
-  class GameEngine
+  class Engine
     LIVES_COUNT = 8
 
     attr_reader :word, :guessed_letters, :incorrect_letters, :lives_count
@@ -28,10 +28,12 @@ module Hangman
     def guess(letter)
       letter = letter.to_s.downcase
       if @word.downcase.chars.include?(letter)
-        @guessed_letters << letter unless @guessed_letters.include?(letter)
+        @guessed_letters << letter
+        true
       else
-        @incorrect_letters << letter unless @incorrect_letters.include?(letter)
+        @incorrect_letters << letter
         @lives_count -= 1
+        false
       end
     end
 
