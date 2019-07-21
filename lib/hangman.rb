@@ -1,1 +1,2 @@
-require "hangman/version"
+require_relative "hangman/version"
+require_relative "hangman/user_interface/default"
