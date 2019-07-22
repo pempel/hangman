@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
-require "optparse"
 require "hangman"
+require "optparse"
 
 word = "Flux"
 word_definition = begin
