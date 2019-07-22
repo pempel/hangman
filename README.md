@@ -2,7 +2,7 @@
 
 A simple Ruby implementation of the hangman game.
 
-I'd like to share a bit more complex solution for your technical task (the hangman game). It's unlikely that a such solution can be written during an interview, but you can consider it as a "bonus track".
+Hi, guys! I'd like to share with you a bit more complex solution for your technical task (the hangman game). It's unlikely that a such solution can be written during an interview, but you can consider it as a "bonus track".
 
 All the game logic (`Engine`) doesn't depend on the interface implementation (`Interface::Default`), so we can easily implement any other interfaces. For that we need to derive a new class from the `Interface::Base` class and override all abstract methods.
 
